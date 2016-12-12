@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return mTitles.get(position);
         }
+
     }
     @Override
     public void onDestroy() {

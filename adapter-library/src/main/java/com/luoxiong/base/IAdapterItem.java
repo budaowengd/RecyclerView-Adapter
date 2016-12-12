@@ -10,6 +10,7 @@ public interface IAdapterItem<T> {
     int getItemViewLayoutId();
 
 
+
     void convert(ViewHolder holder, T t, int position);
 
 }
