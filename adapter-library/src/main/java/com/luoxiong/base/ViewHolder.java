@@ -24,6 +24,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews;
     private View mConvertView;
     private Context mContext;
+    private IAdapterItem item;
+
 
     public ViewHolder(Context context, View itemView) {
         super(itemView);
@@ -40,6 +42,14 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     public static ViewHolder createViewHolder(Context context,
                                               ViewGroup parent, int layoutId) {
         View itemView = LayoutInflater.from(context).inflate(layoutId, parent,
+                false);
+        ViewHolder holder = new ViewHolder(context, itemView);
+        return holder;
+    }
+
+    public static ViewHolder createViewHolder(Context context,
+                                              ViewGroup parent, IAdapterItem item) {
+        View itemView = LayoutInflater.from(context).inflate(item.getItemViewLayoutId(), parent,
                 false);
         ViewHolder holder = new ViewHolder(context, itemView);
         return holder;

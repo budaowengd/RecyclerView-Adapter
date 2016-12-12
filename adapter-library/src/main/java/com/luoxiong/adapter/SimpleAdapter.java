@@ -3,7 +3,6 @@ package com.luoxiong.adapter;
 import android.content.Context;
 import android.view.LayoutInflater;
 
-import com.luoxiong.base.IAdapterItemType;
 import com.luoxiong.base.ViewHolder;
 
 import java.util.List;
@@ -28,23 +27,6 @@ public abstract class SimpleAdapter<T> extends MultiItemTypeAdapter<T> {
         mLayoutId = layoutId;
         mDatas = datas;
 
-        addItemViewType(new IAdapterItemType<T>() {
-            @Override
-            public int getItemViewLayoutId() {
-                return layoutId;
-            }
-
-            @Override
-            public boolean isForViewType(T item, int position) {
-                return true;
-            }
-
-            @Override
-            public void convert(ViewHolder holder, T t, int position) {
-                SimpleAdapter.this.convert(holder, t, position);
-
-            }
-        });
     }
 
     protected abstract void convert(ViewHolder holder, T t, int position);

@@ -1,15 +1,15 @@
-package com.luoxiong.base;
+package com.luoxiong.tools;
 
 import android.util.SparseArray;
 
-
 /**
- * Created by zhy on 16/6/22.
- * ItemViewHolder管理
- * 每个适配器的管理ItemView
+ * ================================================
+ * 作    者：lx
+ * 创建日期：2016/10/29
+ * 描    述：
+ * ================================================
  */
-public class ItemTypeManager<T> {
-
+public class ItemTypeUtil {
     /**
      * 存放Holder类型
      */
@@ -18,7 +18,7 @@ public class ItemTypeManager<T> {
     /**
      * type: text、button、ImageView
      */
-    public int getItemViewType(Object type) {
+    public int getIntType(Object type) {
         int index = typeSArr.indexOfValue(type);
         if (index == -1) {
             index = typeSArr.size();
