@@ -12,8 +12,12 @@ import android.view.ViewGroup;
 
 import com.luoxiong.adapter.MultiItemTypeAdapter;
 import com.luoxiong.base.IAdapterItem;
+import com.luoxiong.base.ViewHolder;
+import com.luoxiong.tools.Logs;
 import com.test.domain.ModelData;
 import com.test.item.TextItem1;
+import com.test.item.TextItem2;
+import com.test.item.TextItem3;
 import com.test.tools.DataManager;
 
 import java.util.ArrayList;
@@ -74,24 +78,30 @@ public class Frag1 extends Fragment {
             super(context, datas);
         }
 
-//        @Override
-//        public String getItemType(ModelData bean) {
-//            return bean.type;
-//        }
+        @Override
+        public String getItemType(ModelData bean) {
+            return bean.type;
+        }
 
         @Override
         public IAdapterItem createItem(String type) {
             //throw new IllegalArgumentException("不合法的type");
+            Logs.d("createItem。。。。"+type);
             if (type != null) {
                 if (type.equals("text")) {
                     return new TextItem1();
                 } else if (type.equals("button")) {
-                    return new TextItem1();
+                    return new TextItem2();
                 } else if (type.equals("image")) {
-                    return new TextItem1();
+                    return new TextItem3();
                 }
             }
             return new TextItem1();
+        }
+
+        @Override
+        protected void setListener(ViewGroup parent, ViewHolder viewHolder, int viewType) {
+            super.setListener(parent, viewHolder, viewType);
         }
     }
 }

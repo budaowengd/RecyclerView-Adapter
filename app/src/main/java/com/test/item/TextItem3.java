@@ -12,10 +12,10 @@ import com.test.domain.ModelData;
  * creation date:  2016/12/12
  * desc ：
  */
-public class TextItem1 implements IAdapterItem<ModelData> {
+public class TextItem3 implements IAdapterItem<ModelData> {
     @Override
     public int getItemViewLayoutId(RecyclerView.Adapter adapter) {
-        return R.layout.item_text1;
+        return R.layout.item_text3;
     }
 
     @Override

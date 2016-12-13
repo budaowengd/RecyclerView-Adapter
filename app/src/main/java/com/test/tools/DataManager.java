@@ -22,8 +22,9 @@ public class DataManager {
     public static List<ModelData> loadModelData(int num) {
         List<ModelData> list = new ArrayList<>();
         for (int i = 0; i < num; i++) {
-            int type = (int) (Math.random() * 3);
+            int type;
              type = 1;
+             type = (int)(1+ (Math.random() * 3));
             ModelData model = new ModelData();
             switch (type) {
                 case 1:

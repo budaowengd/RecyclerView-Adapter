@@ -24,34 +24,28 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews;
     private View mConvertView;
     private Context mContext;
-    private IAdapterItem item;
+    private IAdapterItem mItem;
 
 
-    public ViewHolder(Context context, View itemView) {
+    public ViewHolder(Context context, View itemView,IAdapterItem item) {
         super(itemView);
-        mContext = context;
-        mConvertView = itemView;
-        mViews = new SparseArray<View>();
+        this.mContext = context;
+        this.mItem = item;
+        this.mConvertView = itemView;
+        this.mViews = new SparseArray<>();
     }
 
     public static ViewHolder createViewHolder(Context context, View itemView) {
-        ViewHolder holder = new ViewHolder(context, itemView);
+        ViewHolder holder = new ViewHolder(context, itemView,null);
         return holder;
     }
 
-    public static ViewHolder createViewHolder(Context context,
-                                              ViewGroup parent, int layoutId) {
-        View itemView = LayoutInflater.from(context).inflate(layoutId, parent,
-                false);
-        ViewHolder holder = new ViewHolder(context, itemView);
-        return holder;
-    }
 
-    public static ViewHolder createViewHolder(Context context,
-                                              ViewGroup parent, IAdapterItem item) {
-        View itemView = LayoutInflater.from(context).inflate(item.getItemViewLayoutId(), parent,
+    public static <T> ViewHolder createViewHolder(ViewGroup parent, IAdapterItem item, RecyclerView.Adapter adapter) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(item.getItemViewLayoutId(adapter), parent,
                 false);
-        ViewHolder holder = new ViewHolder(context, itemView);
+        ViewHolder holder = new ViewHolder(parent.getContext(), itemView,item);
+
         return holder;
     }
 
@@ -74,6 +68,13 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         return mConvertView;
     }
 
+    public Context getVpContext() {
+        return mContext;
+    }
+
+    public IAdapterItem getItem() {
+        return mItem;
+    }
 
     /****以下为辅助方法*****/
 

@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
         mFragments.add(new Frag2());
         mFragments.add(new Frag3());
 
+
         mAdapter = new MyAdapter(getSupportFragmentManager());
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setAdapter(mAdapter);
-
     }
 
     class MyAdapter extends FragmentStatePagerAdapter {
