@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:background="#3f00"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+    >
+
+    <RelativeLayout
+        android:id="@+id/lx_loading_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+     >
+
+        <com.luoxiong.MyLoadMoreView
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_centerInParent="true"
+            android:background="@drawable/load_more_anim"
+            />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/lx_load_fail_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/lx_tv_load_fail"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="Refresh" />
+        <TextView
+            android:id="@+id/lx_tv_no_more"
+            android:visibility="gone"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="No More Data" />
+    </FrameLayout>
+
+</FrameLayout>

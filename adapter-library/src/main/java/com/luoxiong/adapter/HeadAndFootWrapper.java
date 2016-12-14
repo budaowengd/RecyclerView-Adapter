@@ -9,9 +9,6 @@ import com.luoxiong.base.ViewHolder;
 import com.luoxiong.tools.WrapperUtils;
 
 
-/**
- * Created by zhy on 16/6/23.
- */
 public class HeadAndFootWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int HEAD_BASE_TYPE = 100000;
     private static final int FOOT_BASE_TYPE = 200000;
