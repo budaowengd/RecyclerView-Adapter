@@ -2,6 +2,7 @@ package com.luoxiong.base;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -19,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.luoxiong.tools.Logs;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews;
@@ -89,9 +92,22 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     /**
      * 设置TextView的值
      */
-    public ViewHolder setText(int viewId, String text) {
+    public ViewHolder setText(int viewId, Object text) {
         TextView tv = getView(viewId);
-        tv.setText(text);
+        //Roboto-Medium.ttf
+       // AssetManager am=tv.getContext().getAssets();//得到AssetManager
+        //Typeface tf=Typeface.createFromAsset(am, "fonts/centuryb.ttf");//根据路径得到Typeface
+       // tv.setTypeface(tf);//设置字体
+
+        if(text instanceof String){
+            tv.setText((String) text);
+        }else{
+            tv.setText((Integer) text);
+        }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            String fontFeatureSettings = tv.getFontFeatureSettings();
+            Logs.d("fontFeatureSettings：："+fontFeatureSettings);
+        }
         return this;
     }
 

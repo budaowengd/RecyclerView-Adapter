@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ProgressBar;
 
 import com.luoxiong.tools.Logs;
 
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MyAdapter(getSupportFragmentManager());
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setAdapter(mAdapter);
+
+        ProgressBar aa;
     }
 
     class MyAdapter extends FragmentStatePagerAdapter {

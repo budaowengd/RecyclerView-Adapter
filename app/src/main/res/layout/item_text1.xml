@@ -10,11 +10,13 @@
     android:layout_height="wrap_content"
     >
 
-    <TextView
+    <com.test.item.DF_TextView
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
+        android:textSize="20sp"
         android:gravity="center_vertical"
         android:text="aaaaaaa"
         />
+    <!--    android:fontFamily="sans-serif-black"-->
 </RelativeLayout>

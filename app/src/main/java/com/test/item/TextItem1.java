@@ -22,6 +22,6 @@ public class TextItem1 implements IAdapterItem<ModelData> {
     @Override
     public void convert(ViewHolder holder, ModelData bean, int position) {
         Logs.d("convert。。。。"+position);
-        holder.setText(R.id.tv_name, bean.content+"   "+position);
+        holder.setText(R.id.tv_name, R.string.text);
     }
 }
