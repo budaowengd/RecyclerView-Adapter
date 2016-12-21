@@ -53,12 +53,14 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
     private int mLoadDataSize;
     private boolean mLoadMoreEnable;
     private boolean isLoadMoreing = false;
+    private RecyclerView mRecyclerView;
 
-
-    public MultiItemTypeAdapter(Context context, List<T> datas) {
-        mContext = context;
-        mDatas = datas;
-        mItemTypeManager = new ItemTypeManager();
+    public MultiItemTypeAdapter(Context context, List<T> dataList, RecyclerView rView) {
+        this.mContext = context;
+        this.mDatas = dataList;
+        this.mItemTypeManager = new ItemTypeManager();
+        this.mRecyclerView = rView;
+       // mRecyclerView.addOnScrollListener(new SimpleRecyScrollListener());
     }
 
     @Override
@@ -125,10 +127,10 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
             showLoading(holder);
         } else if (TextUtils.equals(mLoadMoreState, FAIL_STATE)) {
             //失败，会显示refresh文字，点击可以重新加载
-            showLoadFail(holder,false);
+            showLoadFail(holder, false);
         } else {
             //显示没有更多数据
-            showLoadFail(holder,true);
+            showLoadFail(holder, true);
         }
     }
 
@@ -137,21 +139,21 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
      */
     public void showLoading(ViewHolder holder) {
         isLoadMoreing = true;
-        mLoadMoreListener.onLoadMore();
         holder.setVisible(R.id.lx_loading_ll, true);
         holder.setVisible(R.id.lx_load_fail_fl, false);
+        mLoadMoreListener.onLoadMore();
     }
 
     /**
      * 显示加载失败的布局
      */
-    public void showLoadFail(final ViewHolder holder,boolean isNoMore) {
+    public void showLoadFail(final ViewHolder holder, boolean isNoMore) {
         holder.setVisible(R.id.lx_load_fail_fl, true);
         holder.setVisible(R.id.lx_loading_ll, false);
-        if(isNoMore){
+        if (isNoMore) {
             holder.setVisible(R.id.lx_tv_load_fail, false);
             holder.setVisible(R.id.lx_tv_no_more, true);
-        }else{
+        } else {
             holder.setVisible(R.id.lx_tv_load_fail, true);
             holder.setVisible(R.id.lx_tv_no_more, false);
             holder.setOnClickListener(R.id.lx_tv_load_fail, new View.OnClickListener() {
@@ -232,12 +234,15 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
     public int getMinusHeadPos(int pos) {
         return pos - getHeadCount();
     }
+
     public int getPlusHeadPos(int pos) {
         return pos + getHeadCount();
     }
+
     private boolean getHeadView() {
         return mHeadView != null;
     }
+
     private boolean getFootView() {
         return mFootView != null;
     }
@@ -271,7 +276,8 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
 
     //================ 加载更多=================== start
     public boolean hasLoadMore() {
-        return mLoadMoreListener != null && getListSize() > 0;
+        //return mLoadMoreEnable && getListSize() > 0&&(mDy>0||mDx>0);
+        return mLoadMoreEnable && getListSize() > 0;
     }
 
     //-1是因为loadMore也作为一个holder+1了
@@ -293,6 +299,9 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
 
     }
 
+    public void setPageSize(int pageSize) {
+        mPageSize = pageSize;
+    }
     public void addDataAll(List<T> loadData, boolean isLoadMore) {
         if (!isLoadMore) {
             mDatas.clear();
@@ -303,9 +312,7 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
         if (isLoadMore) {
             isLoadMoreing = false;
             //还有数据
-            if (mPageSize <= mLoadDataSize) {
-                mLoadMoreEnable = true;
-            } else {
+            if (mPageSize > mLoadDataSize) {
                 //没有数据
                 mLoadMoreState = NO_MORE_STATE;
             }
@@ -313,6 +320,16 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
                     , mLoadDataSize + getFootCount() + 1);
         } else {
             notifyDataSetChanged();
+        }
+    }
+
+    private int mDx,mDy;
+    class SimpleRecyScrollListener extends RecyclerView.OnScrollListener{
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            mDx=dx;
+            mDy=dy;
         }
     }
 

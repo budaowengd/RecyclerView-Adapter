@@ -1,6 +1,7 @@
 package com.luoxiong.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 
 import com.luoxiong.base.ViewHolder;
@@ -20,8 +21,8 @@ public abstract class SimpleAdapter<T> extends MultiItemTypeAdapter<T> {
     protected List<T> mDatas;
     protected LayoutInflater mInflater;
 
-    public SimpleAdapter(final Context context, final int layoutId, List<T> datas) {
-        super(context, datas);
+    public SimpleAdapter(final Context context, final int layoutId, List<T> datas, RecyclerView mRecyclerView) {
+        super(context, datas,mRecyclerView);
         mContext = context;
         mInflater = LayoutInflater.from(context);
         mLayoutId = layoutId;

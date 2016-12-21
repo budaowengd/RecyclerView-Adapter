@@ -35,9 +35,9 @@ import java.util.List;
 public class Frag1 extends Fragment implements View.OnClickListener {
 
     RecyclerView mRecyclerView;
-    Frag12Adapter mAdapter;
+    MultiItemTypeAdapter mAdapter;
     List<ModelData> mDatas = new ArrayList<>();
-    int sum = 20;
+    int sum = 2;
     private View mView;
     private GridLayoutManager mGridManager;
 
@@ -56,9 +56,9 @@ public class Frag1 extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mDatas.addAll(DataManager.loadModelData(1));
+        mDatas.addAll(DataManager.loadModelData(6));
         //mAdapter=new Frag1Adapter(getContext(),R.layout.item_text1,mDatas);
-        mAdapter = new Frag12Adapter(getContext(), mDatas);
+        mAdapter = new Frag12Adapter(getContext(), mDatas, mRecyclerView);
         TextView headView = new TextView(getContext());
         headView.setLayoutParams(new FrameLayout.LayoutParams(-1, -2));
         headView.setBackgroundColor(0xffff0000);
@@ -76,7 +76,7 @@ public class Frag1 extends Fragment implements View.OnClickListener {
                 mRecyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        final List<ModelData> modelDatas = DataManager.loadModelData(10);
+                        final List<ModelData> modelDatas = DataManager.loadModelData(5);
                         mAdapter.addDataAll(modelDatas, true);
 //                        mRecyclerView.postDelayed(new Runnable() {
 //                            @Override
@@ -86,9 +86,16 @@ public class Frag1 extends Fragment implements View.OnClickListener {
 //                            }
 //                        }, 1500);
                     }
-                }, 1000);
+                }, 2000);
             }
         });
+
+//        mRecyclerView.addOnScrollListener(new SimpleRecyScrollListener() {
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//            }
+//        });
     }
 
     protected void setEmpty() {
@@ -111,9 +118,10 @@ public class Frag1 extends Fragment implements View.OnClickListener {
 
 
     class Frag12Adapter extends MultiItemTypeAdapter<ModelData> {
-        public Frag12Adapter(Context context, List<ModelData> datas) {
-            super(context, datas);
+        public Frag12Adapter(Context context, List<ModelData> dataList, RecyclerView rView) {
+            super(context, dataList, rView);
         }
+
 
 //        @Override
 //        public String getItemType(ModelData bean) {
@@ -141,7 +149,7 @@ public class Frag1 extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.add) {
             spanCount = spanCount == 1 ? 2 : 1;
-            Logs.d("spanCount: "+spanCount);
+            Logs.d("spanCount: " + spanCount);
             mGridManager.setSpanCount(spanCount);
             mAdapter.notifyDataSetChanged();
         }
