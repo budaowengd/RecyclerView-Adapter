@@ -43,7 +43,7 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
      */
     private String mHolderType;
 
-    //头脚
+    //头脚要在一起，因为分开的话，那么加载更多也要分开
     private View mHeadView;
     private View mFootView;
     //加载更多
