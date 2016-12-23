@@ -50,7 +50,6 @@ public class Ls {
     public static final String sTag = "luoxiong";
 
 
-
     /**
      * 是否允许输出log
      * <p/>
@@ -95,6 +94,13 @@ public class Ls {
 
         }
 
+    }
+
+
+    public static void d(Object obj, String msg) {
+        if (mDebuggable >= LEVEL_DEBUG) {
+            Log.d(obj.getClass().getSimpleName(), msg);
+        }
     }
 
 
