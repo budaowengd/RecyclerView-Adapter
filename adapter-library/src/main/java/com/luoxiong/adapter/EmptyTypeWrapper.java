@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.luoxiong.base.ViewHolder;
-import com.luoxiong.tools.Logs;
+import com.luoxiong.tools.Ls;
 import com.luoxiong.tools.WrapperUtils;
 
 /**
@@ -66,7 +66,6 @@ public class EmptyTypeWrapper extends RecyclerView.Adapter {
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
         mInnerAdapter.onViewAttachedToWindow(holder);
-        Logs.d("isEmpty()::"+(isEmpty()));
         if (isEmpty()) {
             WrapperUtils.setFullSpan(holder);
         }

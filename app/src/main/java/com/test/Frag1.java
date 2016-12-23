@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.luoxiong.adapter.EmptyTypeWrapper;
 import com.luoxiong.adapter.MultiItemTypeAdapter;
 import com.luoxiong.base.IAdapterItem;
-import com.luoxiong.tools.Logs;
+import com.luoxiong.tools.Ls;
 import com.test.domain.ModelData;
 import com.test.item.TextItem1;
 import com.test.item.TextItem2;
@@ -149,7 +149,6 @@ public class Frag1 extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.add) {
             spanCount = spanCount == 1 ? 2 : 1;
-            Logs.d("spanCount: " + spanCount);
             mGridManager.setSpanCount(spanCount);
             mAdapter.notifyDataSetChanged();
         }

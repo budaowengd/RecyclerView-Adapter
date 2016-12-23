@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.luoxiong.base.IAdapterItem;
 import com.luoxiong.base.ViewHolder;
-import com.luoxiong.tools.Logs;
+import com.luoxiong.tools.Ls;
 import com.test.R;
 import com.test.domain.ModelData;
 
@@ -21,7 +21,7 @@ public class TextItem1 implements IAdapterItem<ModelData> {
 
     @Override
     public void convert(ViewHolder holder, ModelData bean, int position) {
-        Logs.d("convert。。。。"+position);
+        Ls.d("convert。。。。"+position);
         holder.setText(R.id.tv_name, R.string.text);
     }
 }

@@ -2,7 +2,6 @@ package com.luoxiong.base;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -21,7 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.luoxiong.tools.Logs;
+import com.luoxiong.tools.Ls;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews;
@@ -106,7 +105,6 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         }
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             String fontFeatureSettings = tv.getFontFeatureSettings();
-            Logs.d("fontFeatureSettings：："+fontFeatureSettings);
         }
         return this;
     }

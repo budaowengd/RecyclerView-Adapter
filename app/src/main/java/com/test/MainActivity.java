@@ -10,8 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ProgressBar;
 
-import com.luoxiong.tools.Logs;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public void onDestroy() {
-        Logs.d("MainActivity。。。。onDestroy()。。222222。。");
         super.onDestroy();
     }
 
