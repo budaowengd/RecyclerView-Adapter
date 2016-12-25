@@ -27,7 +27,6 @@ public abstract class SimpleAdapter<T> extends MultiItemTypeAdapter<T> {
         mInflater = LayoutInflater.from(context);
         mLayoutId = layoutId;
         mDatas = datas;
-
     }
 
     protected abstract void convert(ViewHolder holder, T t, int position);
