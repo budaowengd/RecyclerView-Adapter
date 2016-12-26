@@ -47,7 +47,7 @@ public class Ls {
      * 日志输出时的TAG
      */
 
-    public static final String sTag = "luoxiong";
+    public static final String sTag = "romwe";
 
 
     /**
@@ -99,7 +99,7 @@ public class Ls {
 
     public static void d(Object obj, String msg) {
         if (mDebuggable >= LEVEL_DEBUG) {
-            Log.d(obj.getClass().getSimpleName(), msg);
+            Log.d(obj.getClass().getSimpleName()+"--"+sTag, msg);
         }
     }
 
