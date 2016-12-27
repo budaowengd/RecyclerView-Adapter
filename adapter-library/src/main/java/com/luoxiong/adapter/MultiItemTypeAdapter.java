@@ -78,7 +78,7 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
                 IAdapterItem item = createItem(mHolderType);
                 ViewHolder holder = ViewHolder.createViewHolder(parent, item, this);
                 onViewHolderCreated(holder, holder.getConvertView());
-                setListener(parent, holder, viewType);
+                setListener(holder, viewType);
                 return holder;
         }
     }
@@ -91,14 +91,14 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
         return true;
     }
 
-    protected void setListener(final ViewGroup parent, final ViewHolder viewHolder, int viewType) {
+    public void setListener(final ViewHolder holder, int viewType) {
         if (!isEnabled(viewType)) return;
-        viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {
+        holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mOnItemClickListener != null) {
-                    int position = viewHolder.getAdapterPosition();
-                    mOnItemClickListener.onItemClick(v, viewHolder, position);
+                    int position = holder.getAdapterPosition();
+                    mOnItemClickListener.onItemClick(v, holder, position);
                 }
             }
         });
