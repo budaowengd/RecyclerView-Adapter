@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.text.util.Linkify;
@@ -20,7 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.luoxiong.tools.Ls;
+import com.bumptech.glide.Glide;
+import com.luoxiong.R;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews;
@@ -29,7 +29,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     private IAdapterItem mItem;
 
 
-    public ViewHolder(Context context, View itemView,IAdapterItem item) {
+    public ViewHolder(Context context, View itemView, IAdapterItem item) {
         super(itemView);
         this.mContext = context;
         this.mItem = item;
@@ -38,7 +38,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     }
 
     public static ViewHolder createViewHolder(Context context, View itemView) {
-        ViewHolder holder = new ViewHolder(context, itemView,null);
+        ViewHolder holder = new ViewHolder(context, itemView, null);
         return holder;
     }
 
@@ -46,7 +46,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     public static <T> ViewHolder createViewHolder(ViewGroup parent, IAdapterItem item, RecyclerView.Adapter adapter) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(item.getItemViewLayoutId(adapter), parent,
                 false);
-        ViewHolder holder = new ViewHolder(parent.getContext(), itemView,item);
+        ViewHolder holder = new ViewHolder(parent.getContext(), itemView, item);
 
         return holder;
     }
@@ -55,7 +55,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
                                               ViewGroup parent, int layoutId) {
         View itemView = LayoutInflater.from(context).inflate(layoutId, parent,
                 false);
-        ViewHolder holder = new ViewHolder(context, itemView,null);
+        ViewHolder holder = new ViewHolder(context, itemView, null);
         return holder;
     }
 
@@ -94,13 +94,13 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     public ViewHolder setText(int viewId, Object text) {
         TextView tv = getView(viewId);
         //Roboto-Medium.ttf
-       // AssetManager am=tv.getContext().getAssets();//得到AssetManager
+        // AssetManager am=tv.getContext().getAssets();//得到AssetManager
         //Typeface tf=Typeface.createFromAsset(am, "fonts/centuryb.ttf");//根据路径得到Typeface
-       // tv.setTypeface(tf);//设置字体
+        // tv.setTypeface(tf);//设置字体
 
-        if(text instanceof String){
+        if (text instanceof String) {
             tv.setText((String) text);
-        }else{
+        } else {
             tv.setText((Integer) text);
         }
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -121,9 +121,14 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
-    public ViewHolder setImageDrawable(int viewId, Drawable drawable) {
+    public ViewHolder setImageUrl(int viewId, String url) {
         ImageView view = getView(viewId);
-        view.setImageDrawable(drawable);
+        Glide.with(mContext)
+                .load(url)
+                .crossFade()
+                .centerCrop()
+                .placeholder(R.mipmap.img_place_vertical)
+                .into(view);
         return this;
     }
 
