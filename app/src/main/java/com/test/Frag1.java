@@ -154,9 +154,15 @@ public class Frag1 extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.add) {
-            spanCount = spanCount == 1 ? 2 : 1;
-            mGridManager.setSpanCount(spanCount);
+//            spanCount = spanCount == 1 ? 2 : 1;
+//            mGridManager.setSpanCount(spanCount);
+//            mAdapter.notifyDataSetChanged();
+
+            //mDatas.addAll(DataManager.loadModelData(6));
+            mDatas=DataManager.loadModelData(6);
             mAdapter.notifyDataSetChanged();
+            MultiItemTypeAdapter  aa;
+            aa.setlis
         }
     }
 
