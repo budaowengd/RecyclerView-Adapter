@@ -24,6 +24,7 @@ import com.test.tools.DataManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * ================================================
@@ -67,6 +68,11 @@ public class Frag1 extends Fragment implements View.OnClickListener {
 
         mRecyclerView.setAdapter(mAdapter);
         initEvent();
+
+        String country1 = Locale.getDefault().getCountry();
+        String country2 = Locale.getDefault().getDisplayCountry();
+        String country3 = Locale.getDefault().getLanguage();
+        Ls.d("country1: "+country1+"  country2: "+country2+"   "+country3);
     }
 
     private void initEvent() {
