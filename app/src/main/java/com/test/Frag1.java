@@ -161,8 +161,6 @@ public class Frag1 extends Fragment implements View.OnClickListener {
             //mDatas.addAll(DataManager.loadModelData(6));
             mDatas=DataManager.loadModelData(6);
             mAdapter.notifyDataSetChanged();
-            MultiItemTypeAdapter  aa;
-            aa.setlis
         }
     }
 

@@ -12,7 +12,7 @@ import java.util.List;
  * ================================================
  * 作    者：lx
  * 创建日期：2016/12/7
- * 描    述：1、可以有空布局、可以有加载更多
+ * 描    述：todo 弃用
  * ================================================
  */
 public abstract class SimpleAdapter<T> extends MultiItemTypeAdapter<T> {

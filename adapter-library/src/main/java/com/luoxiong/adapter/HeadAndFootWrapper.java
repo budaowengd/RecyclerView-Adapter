@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import com.luoxiong.base.ViewHolder;
 import com.luoxiong.tools.WrapperUtils;
 
-
+/**
+ * todo 弃用
+ */
 public class HeadAndFootWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int HEAD_BASE_TYPE = 100000;
     private static final int FOOT_BASE_TYPE = 200000;
