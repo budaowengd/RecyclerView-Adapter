@@ -60,7 +60,7 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
         this.mDatas = dataList;
         this.mItemTypeManager = new ItemTypeManager();
         this.mRecyclerView = rView;
-       // mRecyclerView.addOnScrollListener(new SimpleRecyScrollListener());
+        // mRecyclerView.addOnScrollListener(new SimpleRecyScrollListener());
     }
 
     @Override
@@ -213,10 +213,12 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
             gridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
-                    return getItemViewType(position) == HEAD_BASE_TYPE ||
-                            getItemViewType(position) == FOOT_BASE_TYPE
-                            || getItemViewType(position) == LOAD_MORE_BASE_TYPE
-                            ? gridManager.getSpanCount() : 1;
+//                    return getItemViewType(position) == HEAD_BASE_TYPE ||
+//                            getItemViewType(position) == FOOT_BASE_TYPE
+//                            || getItemViewType(position) == LOAD_MORE_BASE_TYPE
+//                            ? gridManager.getSpanCount() : 1;
+                    return getItemViewType(position) == NORMAL_BASE_TYPE ? 1 : gridManager.getSpanCount();
+
                 }
             });
         }
@@ -302,6 +304,7 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
     public void setPageSize(int pageSize) {
         mPageSize = pageSize;
     }
+
     public void addDataAll(List<T> loadData, boolean isLoadMore) {
         if (!isLoadMore) {
             mDatas.clear();
@@ -323,13 +326,14 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
         }
     }
 
-    private int mDx,mDy;
-    class SimpleRecyScrollListener extends RecyclerView.OnScrollListener{
+    private int mDx, mDy;
+
+    class SimpleRecyScrollListener extends RecyclerView.OnScrollListener {
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            mDx=dx;
-            mDy=dy;
+            mDx = dx;
+            mDy = dy;
         }
     }
 
