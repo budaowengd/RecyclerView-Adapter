@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.luoxiong.base.ViewHolder;
-import com.luoxiong.tools.Ls;
 import com.luoxiong.tools.WrapperUtils;
 
 /**

@@ -5,7 +5,7 @@ import android.util.Log;
 import com.luoxiong.BuildConfig;
 
 
-public class Ls {
+public class Lgs {
     /**
      * 日志输出级别NONE
      */

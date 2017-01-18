@@ -10,7 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ProgressBar;
 
-import com.luoxiong.tools.Ls;
+import com.luoxiong.tools.Lgs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mAdapter);
 
         ProgressBar aa;
-        Ls.d(this,"sdadada");
+        Lgs.d(this,"sdadada");
     }
 
     class MyAdapter extends FragmentStatePagerAdapter {

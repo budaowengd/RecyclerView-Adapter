@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.luoxiong.adapter.EmptyTypeWrapper;
 import com.luoxiong.adapter.MultiItemTypeAdapter;
 import com.luoxiong.base.IAdapterItem;
-import com.luoxiong.tools.Ls;
+import com.luoxiong.tools.Lgs;
 import com.test.domain.ModelData;
 import com.test.item.TextItem1;
 import com.test.item.TextItem2;
@@ -72,7 +72,7 @@ public class Frag1 extends Fragment implements View.OnClickListener {
         String country1 = Locale.getDefault().getCountry();
         String country2 = Locale.getDefault().getDisplayCountry();
         String country3 = Locale.getDefault().getLanguage();
-        Ls.d("country1: "+country1+"  country2: "+country2+"   "+country3);
+        Lgs.d("country1: "+country1+"  country2: "+country2+"   "+country3);
     }
 
     private void initEvent() {
