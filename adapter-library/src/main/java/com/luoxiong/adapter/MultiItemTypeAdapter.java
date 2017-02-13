@@ -171,7 +171,8 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
             return HEAD_BASE_TYPE;
         } else if (getFootView() && isFooterViewPos(position)) {
             return FOOT_BASE_TYPE;
-        } else if (isShowLoadMore(position)) {
+            //-1是因为loadMore也作为一个holder+1了
+        } else if (getLoadMore() && position >= getItemCount() - 1) {
             return LOAD_MORE_BASE_TYPE;
         } else {
             T t = mDatas.get(getMinusHeadPos(position));
@@ -197,7 +198,7 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
         if (getFootView()) {
             count++;
         }
-        if (hasLoadMore()) {
+        if (getLoadMore()) {
             count++;
         }
         // LogUtils.d("1111。。。getItemCount()。。。。"+(offset + count)+"  count:"+count+"  offset："+offset);
@@ -277,16 +278,12 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
 
 
     //================ 加载更多=================== start
-    public boolean hasLoadMore() {
+    public boolean getLoadMore() {
         //return mLoadMoreEnable && getListSize() > 0&&(mDy>0||mDx>0);
         return mLoadMoreEnable && getListSize() > 0;
     }
 
-    //-1是因为loadMore也作为一个holder+1了
-    private boolean isShowLoadMore(int position) {
-        boolean isShow = hasLoadMore() && (position >= getItemCount() - 1);
-        return isShow;
-    }
+
 
     /**
      * 创建加载更多的布局
@@ -316,7 +313,6 @@ public abstract class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewH
             isLoadMoreing = false;
             //还有数据
             if (mPageSize > mLoadDataSize) {
-                //没有数据
                 mLoadMoreState = NO_MORE_STATE;
             }
             notifyItemRangeChanged(getListSize() - mLoadDataSize + getHeadCount()
